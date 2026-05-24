@@ -1,7 +1,7 @@
 /* eslint-disable */
 export const displayMap = (locations) => {
-  mapboxgl.accessToken =
-    'pk.eyJ1Ijoic3BhbG1hbWFzYWJldSIsImEiOiJjbWF5ZmJhZncwOHdtMmtwcDN6MDZ1MTZzIn0.-CkLlEJcweozMFnkXS6KoQ';
+  mapboxgl.accessToken =process.env.MAPBOX_ACCESS_TOKEN;
+  if(!mapboxgl.accessToken) return;
   const map = new mapboxgl.Map({
     container: 'map', // container ID
     style: 'mapbox://styles/spalmamasabeu/cmaygpzkc000i01s12ypv0e3o', // style URL

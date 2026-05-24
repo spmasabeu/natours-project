@@ -1,12 +1,13 @@
 /* eslint-disable */
 import '@babel/polyfill';
-import { login, logout } from './login';
+import { login, logout, signup } from './login';
 import { displayMap } from './mapbox';
 import { updateSettings } from './updateSettings';
-import { bookTour } from './stripe';
+import { bookTour } from './booking';
 // DOM ELEMENTS
 const mapBox = document.getElementById('map');
 const loginForm = document.querySelector('.form--login');
+const signupForm = document.querySelector('.form--signup');
 const logOutBtn = document.querySelector('.nav__el--logout');
 const userDataForm = document.querySelector('.form-user-data');
 const passwordDataForm = document.querySelector('.form-user-password');
@@ -24,6 +25,17 @@ if (loginForm) {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     login(email, password);
+  });
+}
+
+if (signupForm) {
+  signupForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const passwordConfirm = document.getElementById('password-confirm').value;
+    signup(name, email, password, passwordConfirm);
   });
 }
 
@@ -66,11 +78,17 @@ if (passwordDataForm) {
 }
 
 if (bookBtn) {
-  bookBtn.addEventListener('click', (e) => {
+  bookBtn.addEventListener('click', async (e) => {
     // console.log(e.target.dataset);
+    const originalText = e.target.textContent;
     e.target.textContent = 'Processing...';
+    e.target.disabled = true;
     const { tourId } = e.target.dataset;
     // console.log(tourId);
-    bookTour(tourId);
+    const startedCheckout = await bookTour(tourId);
+    if (!startedCheckout) {
+      e.target.textContent = originalText;
+      e.target.disabled = false;
+    }
   });
 }

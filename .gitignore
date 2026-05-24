@@ -1,3 +1,4 @@
 .parcel-cache
 node_modules
 config.env
+public/bundle/
