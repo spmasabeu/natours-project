@@ -200,7 +200,7 @@ El script importa tours, usuarios y reseñas desde:
 
 Usuarios seed utiles para login:
 
-- `admin@natours.io`
+- `demo-admin@example.com`
 - `loulou@example.com`
 - `sophie@example.com`
 
@@ -277,7 +277,7 @@ Ejemplo de login:
 ```bash
 curl -X POST http://127.0.0.1:3000/api/v1/users/login \
   -H "Content-Type: application/json" \
-  -d '{"email":"admin@natours.io","password":"test1234"}'
+  -d '{"email":"demo-admin@example.com","password":"test1234"}'
 ```
 
 Ejemplo de tours:
