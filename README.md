@@ -127,6 +127,8 @@ JWT_SECRET=un_secret_largo_y_privado
 JWT_EXPIRES_IN=90d
 JWT_COOKIE_EXPIRES_IN=90
 
+MAPBOX_ACCESS_TOKEN=pk_tu_token_publico_de_mapbox
+
 EMAIL_FROM=tu-email@example.com
 SENDGRID_USERNAME=apikey
 SENDGRID_PASSWORD=tu_sendgrid_api_key
@@ -140,6 +142,9 @@ Notas:
 - `DATABASE` debe incluir el marcador `<PASSWORD>` porque `server.js` lo reemplaza
   con `DATABASE_PASSWORD`.
 - Para email, el codigo usa SendGrid tanto en desarrollo como en produccion.
+- `MAPBOX_ACCESS_TOKEN` es un token publico de Mapbox usado por la vista de
+  detalle de tour para mostrar el mapa base `mapbox://styles/mapbox/streets-v12`.
+  No se commitea en Git; el frontend lo lee desde `/api/v1/config`.
 - Las reservas son demo/locales: el boton `Book tour now!` crea un registro en
   MongoDB y redirige a `/my-tours`. No requiere Stripe ni otra pasarela de pago.
 

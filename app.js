@@ -111,6 +111,20 @@ app.use((req, res, next) => {
   next();
 });
 
+app.get('/api/v1/config', (req, res) => {
+  const mapboxAccessToken = (process.env.MAPBOX_ACCESS_TOKEN || '')
+    .trim()
+    .replace(/^['"]|['"];?$/g, '')
+    .replace(/;$/, '');
+
+  res.status(200).json({
+    status: 'success',
+    data: {
+      mapboxAccessToken,
+    },
+  });
+});
+
 // routes
 app.use('/', viewRouter);
 app.use('/api/v1/tours', tourRouter);

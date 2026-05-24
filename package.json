@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "learning node express n more",
   "scripts": {
+    "start": "node server.js",
+    "build": "npm run build:js",
+    "data:import": "node dev-data/data/import-dev-data.js --import",
+    "data:delete": "node dev-data/data/import-dev-data.js --delete",
     "start:dev": "nodemon server.js",
     "start:prod": "set NODE_ENV=production && nodemon server.js",
     "debug": "ndb server.js",
@@ -27,6 +31,7 @@
     "html-to-text": "^9.0.5",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.16.0",
+    "mongodb-memory-server": "^11.1.0",
     "mongoose": "^8.14.1",
     "morgan": "^1.10.0",
     "multer": "1.4",

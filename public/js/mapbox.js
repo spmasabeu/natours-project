@@ -1,10 +1,19 @@
 /* eslint-disable */
-export const displayMap = (locations) => {
-  mapboxgl.accessToken =process.env.MAPBOX_ACCESS_TOKEN;
-  if(!mapboxgl.accessToken) return;
+const getMapboxAccessToken = async () => {
+  const res = await fetch('/api/v1/config');
+  if (!res.ok) return '';
+
+  const config = await res.json();
+  return config.data.mapboxAccessToken;
+};
+
+export const displayMap = async (locations) => {
+  mapboxgl.accessToken = await getMapboxAccessToken();
+  if (!mapboxgl.accessToken) return;
+
   const map = new mapboxgl.Map({
     container: 'map', // container ID
-    style: 'mapbox://styles/spalmamasabeu/cmaygpzkc000i01s12ypv0e3o', // style URL
+    style: 'mapbox://styles/mapbox/streets-v12', // style URL
     scrollZoom: true,
     // zoom: 12,
     // center: [], // starting position [lng, lat]
